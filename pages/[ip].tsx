@@ -16,8 +16,11 @@ import {
     VStack,
     Text
 } from '@chakra-ui/react';
+import { useRouter } from 'next/router';
 
 const ServerPage: NextPage = ({ data }: any) => {
+    const router = useRouter();
+    const { ip } = router.query;
     return (
         <>
             <Head>
@@ -26,15 +29,29 @@ const ServerPage: NextPage = ({ data }: any) => {
                         ? 'Server not found!'
                         : data.hostname}
                 </title>
+                <meta property="og:type" content="McFinder" />
                 <meta
                     property="og:title"
                     content={
                         data.debug.dns?.error
                             ? 'Server not found!'
-                            : `Info about ${data.hostname}`
+                            : `${data.hostname}`
                     }
                     key="title"
                 />
+                <meta
+                    property="og:description"
+                    content={
+                        data.debug.dns?.error
+                            ? 'Server not found!'
+                            : `Info about ${data.hostname}`
+                    }
+                />
+                <meta
+                    property="og:url"
+                    content={`mc-finder.vercel.app/${ip}`}
+                />
+                <meta property="og:image" content={data.icon} />
             </Head>
             <Header />
             <Box w="100%" h={500}>
@@ -49,10 +66,8 @@ export async function getServerSideProps({ query }: any) {
     let response;
     try {
         const res = await axios.get(`https://api.mcsrvstat.us/2/${ip}`);
-        console.log(res.data);
         response = res.data;
     } catch (err) {
-        console.log(err);
         response = { error: true, message: err };
     }
 
