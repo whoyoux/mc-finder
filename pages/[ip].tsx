@@ -39,6 +39,14 @@ const ServerPage: NextPage = ({ data }: any) => {
                     key="title"
                 />
                 <meta
+                    property="og:site_name"
+                    content={
+                        data.debug.dns?.error
+                            ? 'Server not found!'
+                            : `${data.hostname}`
+                    }
+                />
+                <meta
                     property="og:description"
                     content={
                         data.debug.dns?.error
