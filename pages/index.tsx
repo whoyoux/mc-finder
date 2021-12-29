@@ -29,6 +29,7 @@ const Home: NextPage = () => {
                     name="description"
                     content="Simple page for finding informations about Minecraft server."
                 />
+                <meta name="theme-color" content="#7289DA" />
             </Head>
             <Header />
             <Box w="100%" h={500}>
