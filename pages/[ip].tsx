@@ -59,6 +59,7 @@ const ServerPage: NextPage = ({ data }: any) => {
                 />
                 <meta property="og:image" content={data.icon} />
                 <link rel="icon" type="image/png" href={data.icon} />
+                <meta name="twitter:card" content="summary_large_image" />
             </Head>
             <Header />
             <Box w="100%" h={500}>
