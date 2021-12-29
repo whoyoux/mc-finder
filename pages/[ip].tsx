@@ -42,7 +42,7 @@ const ServerPage: NextPage = ({ data }: any) => {
                     content={
                         data.debug.dns?.error
                             ? 'Server not found!'
-                            : `${data.hostname}`
+                            : `mc-finder.vercel.com/${data.hostname}`
                     }
                 />
                 <meta
