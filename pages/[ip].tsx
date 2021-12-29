@@ -59,7 +59,11 @@ const ServerPage: NextPage = ({ data }: any) => {
                     content={`mc-finder.vercel.app/${ip}`}
                 />
                 <meta property="og:image" content={data.icon} />
-                <link rel="icon" type="image/png" href={data.icon} />
+                <link
+                    rel="icon"
+                    type="image/png"
+                    href={`https://mc-api.net/v3/server/favicon/${data.hostname}`}
+                />
                 <meta name="twitter:card" content="summary_large_image" />
             </Head>
             <Header />
