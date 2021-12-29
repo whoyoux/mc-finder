@@ -37,14 +37,15 @@ const ServerPage: NextPage = ({ data }: any) => {
                             : `Info about ${data.hostname}`
                     }
                 />
-                <meta
+                {/* <meta
                     property="og:site_name"
                     content={
                         data.debug.dns?.error
                             ? 'Server not found!'
-                            : `mc-finder.vercel.com/${data.hostname}`
+                            : `mc-finder.vercel.com`
                     }
-                />
+                /> */}
+                <meta property="og:site_name" content="mc-finder.vercel.com" />
                 <meta
                     property="og:description"
                     content={
