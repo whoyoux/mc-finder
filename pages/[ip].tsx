@@ -34,7 +34,7 @@ const ServerPage: NextPage = ({ data }: any) => {
                     content={
                         data.debug.dns?.error
                             ? 'Server not found!'
-                            : `${data.hostname}`
+                            : `Info about ${data.hostname}`
                     }
                 />
                 <meta
@@ -50,7 +50,7 @@ const ServerPage: NextPage = ({ data }: any) => {
                     content={
                         data.debug.dns?.error
                             ? 'Server not found!'
-                            : `Info about ${data.hostname}`
+                            : `${data.motd.clean.join(' ')}`
                     }
                 />
                 <meta
