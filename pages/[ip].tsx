@@ -18,9 +18,6 @@ import {
 } from '@chakra-ui/react';
 
 const ServerPage: NextPage = ({ data }: any) => {
-    useEffect(() => {
-        console.log(data);
-    }, []);
     return (
         <>
             <Head>
