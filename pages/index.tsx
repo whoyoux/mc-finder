@@ -14,6 +14,7 @@ import {
     VStack,
     Text
 } from '@chakra-ui/react';
+import Head from 'next/head';
 
 const Home: NextPage = () => {
     const [isLoading, SetIsLoading] = useState(false);
@@ -22,6 +23,13 @@ const Home: NextPage = () => {
 
     return (
         <>
+            <Head>
+                <title>McFinder</title>
+                <meta
+                    name="description"
+                    content="Simple page for finding informations about Minecraft server."
+                />
+            </Head>
             <Header />
             <Box w="100%" h={500}>
                 <Center h="100%">

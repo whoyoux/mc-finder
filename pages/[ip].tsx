@@ -28,7 +28,7 @@ const ServerPage: NextPage = ({ data }: any) => {
                         ? 'Server not found!'
                         : data.hostname}
                 </title>
-                <meta property="og:type" content="McFinder" />
+                <meta property="og:type" content="website" />
                 <meta
                     property="og:title"
                     content={
