@@ -9,7 +9,15 @@ import Image from 'next/image';
 
 import Header from '../components/Header';
 
-import { Box, Center, Text, Divider } from '@chakra-ui/react';
+import {
+    Box,
+    Center,
+    Text,
+    Divider,
+    Tag,
+    HStack,
+    VStack
+} from '@chakra-ui/react';
 
 import { useRouter } from 'next/router';
 
@@ -81,13 +89,24 @@ const ServerPage: NextPage = ({ data }: any) => {
                         <>
                             <Box>
                                 <Center>
-                                    <Image
-                                        src={`https://eu.mc-api.net/v3/server/favicon/${ip}`}
-                                        quality="100"
-                                        alt="Server icon"
-                                        width={64}
-                                        height={64}
-                                    />
+                                    <VStack>
+                                        <Image
+                                            src={`https://eu.mc-api.net/v3/server/favicon/${ip}`}
+                                            quality="100"
+                                            alt="Server icon"
+                                            width={64}
+                                            height={64}
+                                        />
+                                        {data.online ? (
+                                            <Tag colorScheme="green">
+                                                Server is online!
+                                            </Tag>
+                                        ) : (
+                                            <Tag colorScheme="red">
+                                                Server is offline!
+                                            </Tag>
+                                        )}
+                                    </VStack>
                                 </Center>
 
                                 <Divider my={4} />
