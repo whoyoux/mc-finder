@@ -62,7 +62,7 @@ const Home: NextPage = () => {
             });
             return;
         }
-        router.push(`/${ip}`);
+        router.push(`/${ip.trim()}`);
     };
     return (
         <>
