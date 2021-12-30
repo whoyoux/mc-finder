@@ -34,14 +34,25 @@ const ServerPage: NextPage = ({ data }: any) => {
                         />
                         <meta
                             property="og:description"
-                            content={data.description}
+                            content={
+                                data.description.text
+                                    ? data.description.text
+                                    : data.description
+                            }
                         />
                         <meta
                             property="og:url"
                             content={`mc-finder.vercel.app/${ip}`}
                         />
-                        <meta property="og:image" content={data.favicon} />
-                        <link rel="icon" type="image/png" href={data.favicon} />
+                        <meta
+                            property="og:image"
+                            content={`https://eu.mc-api.net/v3/server/favicon/${ip}`}
+                        />
+                        <link
+                            rel="icon"
+                            type="image/png"
+                            href={`https://eu.mc-api.net/v3/server/favicon/${ip}`}
+                        />
                         <meta
                             name="twitter:card"
                             content="summary_large_image"
@@ -71,7 +82,7 @@ const ServerPage: NextPage = ({ data }: any) => {
                             <Box>
                                 <Center>
                                     <Image
-                                        src={data.favicon}
+                                        src={`https://eu.mc-api.net/v3/server/favicon/${ip}`}
                                         quality="100"
                                         alt="Server icon"
                                         width={64}
@@ -87,7 +98,9 @@ const ServerPage: NextPage = ({ data }: any) => {
                                     {data.description !== ''
                                         ? ReactHtmlParser(
                                               motdParser.textToHTML(
-                                                  data.description
+                                                  data.description.text
+                                                      ? data.description.text
+                                                      : data.description
                                               )
                                           )
                                         : `MOTD is empty`}
