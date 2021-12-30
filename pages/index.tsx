@@ -21,6 +21,7 @@ import { redirect } from 'next/dist/server/api-utils';
 const Home: NextPage = () => {
     const toast = useToast();
     const router = useRouter();
+    const [isLoading, setIsLoading] = useState(false);
     const [ip, setIP] = useState('');
     const handleChangeIP = (event: any) => setIP(event.target.value);
 
@@ -30,6 +31,7 @@ const Home: NextPage = () => {
     };
 
     const redirectToServerPage = () => {
+        setIsLoading(true);
         if (!ip.trim() || ip.trim().length <= 0) {
             toast({
                 title: 'Whoops!',
@@ -38,6 +40,7 @@ const Home: NextPage = () => {
                 duration: 9000,
                 isClosable: true
             });
+            setIsLoading(false);
             return;
         }
 
@@ -49,6 +52,7 @@ const Home: NextPage = () => {
                 duration: 9000,
                 isClosable: true
             });
+            setIsLoading(false);
             return;
         }
 
@@ -60,8 +64,10 @@ const Home: NextPage = () => {
                 duration: 9000,
                 isClosable: true
             });
+            setIsLoading(false);
             return;
         }
+        setIsLoading(false);
         router.push(`/${ip.trim()}`);
     };
     return (
@@ -97,6 +103,7 @@ const Home: NextPage = () => {
                                 icon={<SearchIcon />}
                                 size="lg"
                                 onClick={redirectToServerPage}
+                                isLoading={isLoading}
                             />
                         </Stack>
                     </VStack>
