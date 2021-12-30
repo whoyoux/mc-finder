@@ -16,7 +16,8 @@ import {
     Divider,
     Tag,
     HStack,
-    VStack
+    VStack,
+    Progress
 } from '@chakra-ui/react';
 
 import { useRouter } from 'next/router';
@@ -87,7 +88,7 @@ const ServerPage: NextPage = ({ data }: any) => {
                 <Center h="100%">
                     {!data.error ? (
                         <>
-                            <Box>
+                            <Box w="40vw">
                                 <Center>
                                     <VStack>
                                         <Image
@@ -110,10 +111,12 @@ const ServerPage: NextPage = ({ data }: any) => {
                                 </Center>
 
                                 <Divider my={4} />
-                                <Text>IP: {ip}</Text>
+                                <Text>
+                                    <strong>IP</strong>: {ip}
+                                </Text>
                                 <Divider my={4} />
                                 <Text>
-                                    MOTD:{' '}
+                                    <strong>MOTD</strong>:{' '}
                                     {data.description !== ''
                                         ? ReactHtmlParser(
                                               motdParser.textToHTML(
@@ -126,15 +129,26 @@ const ServerPage: NextPage = ({ data }: any) => {
                                 </Text>
                                 <Divider my={4} />
                                 <Text>
-                                    Players: {data.players.online}
+                                    <strong>Players</strong>:{' '}
+                                    {data.players.online}
                                     {' / '}
                                     {data.players.max}
                                 </Text>
+                                <Progress
+                                    value={
+                                        (data.players.online /
+                                            data.players.max) *
+                                        100
+                                    }
+                                />
+                                <Divider my={4} />
                             </Box>
                         </>
                     ) : (
                         <>
-                            <Text>Server not found!</Text>
+                            <Text fontSize="2xl">
+                                Server not found or may be offline!
+                            </Text>
                         </>
                     )}
                 </Center>

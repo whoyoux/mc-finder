@@ -1,27 +1,17 @@
 import type { NextPage } from 'next';
-import { ReactNode } from 'react';
+import Link from 'next/link';
 import {
     Box,
     Flex,
-    Avatar,
-    Link,
     Button,
-    Menu,
-    MenuButton,
-    MenuList,
-    MenuItem,
-    MenuDivider,
-    useDisclosure,
     useColorModeValue,
     Stack,
-    useColorMode,
-    Center
+    useColorMode
 } from '@chakra-ui/react';
 import { MoonIcon, SunIcon } from '@chakra-ui/icons';
 
 const Header: NextPage = () => {
     const { colorMode, toggleColorMode } = useColorMode();
-    const { isOpen, onOpen, onClose } = useDisclosure();
     return (
         <>
             <Box bg={useColorModeValue('gray.100', 'gray.900')} px={4}>
@@ -30,7 +20,9 @@ const Header: NextPage = () => {
                     alignItems={'center'}
                     justifyContent={'space-between'}
                 >
-                    <Box>Logo</Box>
+                    <Box>
+                        <Link href="/">McFinder</Link>
+                    </Box>
 
                     <Flex alignItems={'center'}>
                         <Stack direction={'row'} spacing={7}>

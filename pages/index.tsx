@@ -1,6 +1,6 @@
-import { useState, useEffect } from 'react';
+import { useState } from 'react';
 import type { NextPage } from 'next';
-import axios from 'axios';
+import { useRouter } from 'next/router';
 
 import Header from '../components/Header';
 
@@ -13,13 +13,57 @@ import {
     IconButton,
     VStack,
     Text,
-    InputGroup,
-    InputLeftAddon,
-    InputRightAddon
+    useToast
 } from '@chakra-ui/react';
 import Head from 'next/head';
+import { redirect } from 'next/dist/server/api-utils';
 
 const Home: NextPage = () => {
+    const toast = useToast();
+    const router = useRouter();
+    const [ip, setIP] = useState('');
+    const handleChangeIP = (event: any) => setIP(event.target.value);
+
+    const handleKeyUp = (event: any) => {
+        event.preventDefault();
+        if (event.key === 'Enter') redirectToServerPage();
+    };
+
+    const redirectToServerPage = () => {
+        if (!ip.trim() || ip.trim().length <= 0) {
+            toast({
+                title: 'Whoops!',
+                description: "IP can't be empty.",
+                status: 'error',
+                duration: 9000,
+                isClosable: true
+            });
+            return;
+        }
+
+        if (ip.trim().length > 25) {
+            toast({
+                title: 'Whoops!',
+                description: "IP can't be more than 25 characters.",
+                status: 'error',
+                duration: 9000,
+                isClosable: true
+            });
+            return;
+        }
+
+        if (ip.trim().length < 4) {
+            toast({
+                title: 'Whoops!',
+                description: "IP can't be less than 4 characters.",
+                status: 'error',
+                duration: 9000,
+                isClosable: true
+            });
+            return;
+        }
+        router.push(`/${ip}`);
+    };
     return (
         <>
             <Head>
@@ -38,27 +82,21 @@ const Home: NextPage = () => {
                             Find stats about your favorite server!
                         </Text>
                         <Stack direction={['column', 'row']} w="100%">
-                            <InputGroup size="lg">
-                                <Input
-                                    type="text"
-                                    variant="filled"
-                                    placeholder="Server ip"
-                                    borderRightRadius={0}
-                                    w="70%"
-                                />
-                                <Input
-                                    type="number"
-                                    variant="filled"
-                                    placeholder="Server port"
-                                    borderLeftRadius={0}
-                                    w="30%"
-                                />
-                            </InputGroup>
+                            <Input
+                                type="text"
+                                variant="filled"
+                                placeholder="Server ip"
+                                size="lg"
+                                value={ip}
+                                onChange={handleChangeIP}
+                                onKeyUp={handleKeyUp}
+                            />
 
                             <IconButton
                                 aria-label="Search database"
                                 icon={<SearchIcon />}
                                 size="lg"
+                                onClick={redirectToServerPage}
                             />
                         </Stack>
                     </VStack>
