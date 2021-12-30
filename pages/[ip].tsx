@@ -124,6 +124,12 @@ const ServerPage: NextPage = ({ data }: any) => {
                                           )
                                         : `MOTD is empty`}
                                 </Text>
+                                <Divider my={4} />
+                                <Text>
+                                    Players: {data.players.online}
+                                    {' / '}
+                                    {data.players.max}
+                                </Text>
                             </Box>
                         </>
                     ) : (
