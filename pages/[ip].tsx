@@ -45,8 +45,10 @@ const ServerPage: NextPage = ({ data }: any) => {
                             property="og:description"
                             content={
                                 data.description.text
-                                    ? data.description.text
-                                    : data.description
+                                    ? motdParser.cleanTags(
+                                          data.description.text
+                                      )
+                                    : motdParser.cleanTags(data.description)
                             }
                         />
                         <meta
