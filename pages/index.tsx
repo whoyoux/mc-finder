@@ -12,15 +12,14 @@ import {
     Stack,
     IconButton,
     VStack,
-    Text
+    Text,
+    InputGroup,
+    InputLeftAddon,
+    InputRightAddon
 } from '@chakra-ui/react';
 import Head from 'next/head';
 
 const Home: NextPage = () => {
-    const [isLoading, SetIsLoading] = useState(false);
-
-    const findServer = async () => {};
-
     return (
         <>
             <Head>
@@ -39,13 +38,24 @@ const Home: NextPage = () => {
                             Find stats about your favorite server!
                         </Text>
                         <Stack direction={['column', 'row']} w="100%">
-                            <Input
-                                variant="filled"
-                                placeholder="Server ip with port"
-                                size="lg"
-                            />
+                            <InputGroup size="lg">
+                                <Input
+                                    type="text"
+                                    variant="filled"
+                                    placeholder="Server ip"
+                                    borderRightRadius={0}
+                                    w="70%"
+                                />
+                                <Input
+                                    type="number"
+                                    variant="filled"
+                                    placeholder="Server port"
+                                    borderLeftRadius={0}
+                                    w="30%"
+                                />
+                            </InputGroup>
+
                             <IconButton
-                                isLoading={isLoading}
                                 aria-label="Search database"
                                 icon={<SearchIcon />}
                                 size="lg"

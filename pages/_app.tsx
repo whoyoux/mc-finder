@@ -3,7 +3,8 @@ import {
     ChakraProvider,
     extendTheme,
     ThemeConfig,
-    ColorModeScript
+    ColorModeScript,
+    CSSReset
 } from '@chakra-ui/react';
 
 function MyApp({ Component, pageProps }: AppProps) {
@@ -15,6 +16,7 @@ function MyApp({ Component, pageProps }: AppProps) {
     const theme = extendTheme({ config });
     return (
         <ChakraProvider>
+            <CSSReset />
             <ColorModeScript initialColorMode={theme.config.initialColorMode} />
             <Component {...pageProps} />
         </ChakraProvider>
